@@ -17,3 +17,7 @@ A működő V1 alapjára épített, szélesebb szakmai munkafolyamat-listát tar
 Falazás, Vakolás, Betonozás, Zsaluzás, Bontás, Szigetelés, Hőszigetelés, Vízszigetelés, Burkolás, Padloponozás / aljzatkiegyenlítés, Glettelés, Festés, Színezés, Profilozás, Gipszkartonozás, Állványozás, Térkövezés, Aljzatbetonozás, Betoncsiszolás, Fúrás / vésés, Nyílászáró körüli javítás, Kőműves javítások, Tereprendezés, Anyagmozgatás, Takarítás / munkaterület-rendezés.
 
 Az egyes listák szakmai alapjavaslatok; nem kötelező előírások. A felhasználó dönt minden tételről.
+
+
+## Ikonok
+A projekt saját kivitelezési asszisztens ikont használ: `icons/favicon.svg` a böngészőfülhöz, `icon-192.png` és `icon-512.png` a telefonos/PWA telepítéshez. A `manifest.webmanifest` és az `index.html` ezekre közvetlenül hivatkozik.
