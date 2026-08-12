@@ -1,14 +1,19 @@
-# Napi Kivitelezési Asszisztens – V1
+# Napi Kivitelezési Asszisztens – V2 javított
 
-Első, egyszerű helyi prototípus generálkivitelezők és szakemberek számára.
+A működő V1 alapjára épített, szélesebb szakmai munkafolyamat-listát tartalmazó prototípus.
 
-- Több munkafolyamat egy munkanapon
-- Nincs időpont és nincs kötelező sorrend
-- Szakmai szerszám- és anyagjavaslatok
-- Ismétlődő tételek összevonása
-- Minden tétel külön kipipálható
-- Saját szerszám és anyag hozzáadható
-- A döntések helyben mentődnek a böngészőben
-- A döntésadatok előkészítik a későbbi személyre szabott ajánlásokat
+## Mit tud?
+- Több munkafolyamat egy napon.
+- Nincs időpont- vagy időtartam-megadás.
+- A kiválasztott munkák szerszám- és anyagjavaslatai összevonódnak.
+- Ismétlődő tételek csak egyszer jelennek meg.
+- Minden tétel külön kipipálható.
+- Saját szerszám és saját anyag hozzáadható.
+- Regisztráció nélkül használható.
+- A napi kiválasztások a böngészőben helyben mentődnek.
+- Saját ikon és webapp manifest is van benne.
 
-Az `index.html` közvetlenül megnyitható. A V1 még nem használ AI-t; először valódi használati adatot gyűjtünk.
+## Munkafolyamatok
+Falazás, Vakolás, Betonozás, Zsaluzás, Bontás, Szigetelés, Hőszigetelés, Vízszigetelés, Burkolás, Padloponozás / aljzatkiegyenlítés, Glettelés, Festés, Színezés, Profilozás, Gipszkartonozás, Állványozás, Térkövezés, Aljzatbetonozás, Betoncsiszolás, Fúrás / vésés, Nyílászáró körüli javítás, Kőműves javítások, Tereprendezés, Anyagmozgatás, Takarítás / munkaterület-rendezés.
+
+Az egyes listák szakmai alapjavaslatok; nem kötelező előírások. A felhasználó dönt minden tételről.
