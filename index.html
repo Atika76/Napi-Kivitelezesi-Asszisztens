@@ -1,8 +1,51 @@
-<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#17212b"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png?v=20260812" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="icon-192.png?v=20260812"><title>Napi Kivitelezési Asszisztens</title><link rel="stylesheet" href="style.css"></head><body>
-<header><div class="top"><div><small>NAPI KIVITELEZÉSI ASSZISZTENS</small><h1>Mai munkanap</h1><p>Válaszd ki a mai munkákat. A rendszer összegyűjti a hozzájuk tartozó szakmai alapjavaslatokat.</p></div><button id="reset" class="outline">Újrakezdés</button></div></header>
-<main><section class="card hero"><div><span class="badge">V2 · kipróbálható</span><h2>Többféle munka egy napon</h2><p>Nem kell időt megadnod. Válaszd ki a munkákat, majd pipáld ki, amit tényleg viszel.</p></div><div class="counter"><b id="workCount">0</b><span>kiválasztott munka</span></div></section>
-<section class="card"><h2>Munkafolyamatok</h2><p class="muted">Többet is kiválaszthatsz.</p><div id="works" class="chips"></div><div class="addrow"><input id="newWork" placeholder="Más munkafolyamat…"><button id="addWork">+ Hozzáadás</button></div><div id="selected" class="selected"></div></section>
-<section class="grid"><section class="card"><div class="head"><div><h2>🔨 Szükséges szerszámok</h2><p class="muted">A kiválasztott munkák összevont listája.</p></div><button id="addTool" class="small">+ Saját</button></div><div id="tools"></div></section>
-<section class="card"><div class="head"><div><h2>📦 Szükséges anyagok</h2><p class="muted">Szakmai alapjavaslat, amit szabadon módosíthatsz.</p></div><button id="addMaterial" class="small">+ Saját</button></div><div id="materials"></div></section></section>
-<section class="card"><div class="summary"><div><h2>Indulás előtti ellenőrzés</h2><p class="muted">A rendszer javasol, a végső döntés a tiéd.</p></div><strong><span id="checked">0</span> / <span id="total">0</span></strong></div><div class="progress"><i id="bar"></i></div></section></main>
-<dialog id="dlg"><form id="form"><h2 id="dlgTitle">Saját tétel</h2><p id="dlgText" class="muted"></p><input id="dlgInput" required maxlength="80" placeholder="Írd be a tételt…"><div class="actions"><button type="button" id="cancel" class="secondary">Mégse</button><button type="submit">Hozzáadás</button></div></form></dialog><footer>Napi Kivitelezési Asszisztens · V2 · Regisztráció nélkül használható</footer><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#17212b">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.png?v=20260812" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="icon-192.png?v=20260812">
+  <title>Napi Kivitelezési Asszisztens</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="top">
+      <div><small>NAPI KIVITELEZÉSI ASSZISZTENS</small><h1>Mai munkanap</h1><p>Válaszd ki a mai munkákat. A program segít, hogy induláskor ne maradjon otthon fontos eszköz vagy anyag.</p></div>
+      <div class="top-actions"><button type="button" id="loadYesterday" class="outline">Tegnapi lista</button><button type="button" id="share" class="outline">Megosztás</button><button type="button" id="print" class="outline">Nyomtatás</button><button type="button" id="reset" class="outline danger">Újrakezdés</button></div>
+    </div>
+  </header>
+  <main>
+    <section class="card hero">
+      <div><h2>Többféle munka egy napon</h2><p>Válassz ki több munkafolyamatot. Az azonos szerszámokat és anyagokat egy napi listába vonjuk össze.</p></div>
+      <div class="counter"><b id="workCount">0</b><span>kiválasztott munka</span></div>
+    </section>
+
+    <section class="card work-card">
+      <div class="section-title"><div><h2>Munkafolyamatok</h2><p class="muted">Többet is kiválaszthatsz.</p></div><label class="search"><span>⌕</span><input id="workSearch" type="search" placeholder="Munkafolyamat keresése…"></label></div>
+      <div id="works" class="chips"></div>
+      <div class="addrow"><input id="newWork" type="text" placeholder="Más munkafolyamat…"><button type="button" id="addWork">+ Hozzáadás</button></div>
+      <div id="selected" class="selected"></div>
+    </section>
+
+    <section class="grid triple">
+      <section class="card list-card"><div class="head"><div><h2>🔨 Szerszámok és gépek</h2><p class="muted">Összevont szakmai alapjavaslat.</p></div><button type="button" id="addTool" class="small">+ Saját</button></div><label class="item-search"><span>⌕</span><input id="toolSearch" type="search" placeholder="Szerszám keresése…"></label><div id="tools"></div></section>
+      <section class="card list-card"><div class="head"><div><h2>📦 Szükséges anyagok</h2><p class="muted">Mennyiséget vagy rövid megjegyzést is írhatsz.</p></div><button type="button" id="addMaterial" class="small">+ Saját</button></div><label class="item-search"><span>⌕</span><input id="materialSearch" type="search" placeholder="Anyag keresése…"></label><div id="materials"></div></section>
+      <section class="card list-card"><div class="head"><div><h2>🦺 Védelem és helyszíni kellékek</h2><p class="muted">Munkavédelem, áramellátás és alap helyszíni eszközök.</p></div><button type="button" id="addSafety" class="small">+ Saját</button></div><label class="item-search"><span>⌕</span><input id="safetySearch" type="search" placeholder="Kellék keresése…"></label><div id="safety"></div></section>
+    </section>
+
+    <section class="grid double">
+      <section class="card list-card"><div class="head"><div><h2>✅ Mindig ellenőrizd</h2><p class="muted">Saját, állandó induló felszerelésed. Minden nap megjelenik.</p></div><button type="button" id="addAlways" class="small">+ Saját</button></div><div id="always"></div></section>
+      <section class="card learning-card"><div class="head"><div><h2>💡 Korábban gyakori tételek</h2><p class="muted">A saját, ismétlődően használt tételeidből készül.</p></div></div><div id="learning"></div></section>
+    </section>
+
+    <section class="card status-help"><h2>Indulás előtti ellenőrzés</h2><p class="muted">Minden tételnél válaszd ki: <b>Megvan</b>, <b>Be kell pakolni</b> vagy <b>Beszerzendő</b>. A program javasol, a végső döntés a tiéd.</p><div class="progress-summary"><strong><span id="ready">0</span> megvan</strong><strong><span id="pack">0</span> be kell pakolni</strong><strong><span id="buy">0</span> beszerzendő</strong></div><div class="progress"><i id="bar"></i></div></section>
+  </main>
+
+  <dialog id="dlg"><form id="form"><h2 id="dlgTitle">Saját tétel</h2><p id="dlgText" class="muted"></p><input id="dlgInput" type="text" required maxlength="80" placeholder="Írd be a tételt…"><div class="actions"><button type="button" id="cancel" class="secondary">Mégse</button><button type="submit">Hozzáadás</button></div></form></dialog>
+  <footer>Napi Kivitelezési Asszisztens · Regisztráció nélkül használható</footer>
+  <script src="app.js"></script>
+</body>
+</html>
