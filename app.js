@@ -27,9 +27,10 @@ const C={
 };
 const SAFETY=["munkavédelmi bakancs","munkavédelmi kesztyű","védőszemüveg","porálarc / légzésvédelem","hallásvédelem","láthatósági mellény","hosszabbító","elosztó","akkumulátor / töltő","munkalámpa","elsősegélycsomag","ivóvíz","védőfólia / takarás","szemeteszsák"];
 const ALWAYS_DEFAULT=["mérőszalag","lézer / szintező","hosszabbító","akkumulátor / töltő","alap kéziszerszámok"];
-const KEY="nka_v3",YESTERDAY_KEY="nka_v3_yesterday";
+const KEY="nka_v3",YESTERDAY_KEY="nka_v3_yesterday",LEGACY_KEY="nka_v2_fixed";
 const empty=()=>({works:[],status:{},ownT:[],ownM:[],ownS:[],notes:{},customWorks:[],always:ALWAYS_DEFAULT.slice(),learning:{}});
-let s=JSON.parse(localStorage.getItem(KEY)||"null")||empty(),mode="";
+function legacyState(){const old=JSON.parse(localStorage.getItem(LEGACY_KEY)||"null");if(!old)return null;const next=empty();next.works=old.works||[];next.ownT=old.ownT||[];next.ownM=old.ownM||[];["tools","materials"].forEach(source=>Object.entries(old[source]||{}).filter(([,checked])=>checked).forEach(([name])=>next.status[`${source==="tools"?"t":"m"}::${name}`]="ready"));return next}
+let s=JSON.parse(localStorage.getItem(KEY)||"null")||legacyState()||empty(),mode="";
 s={...empty(),...s}; s.status||={}; s.notes||={}; s.learning||={}; s.customWorks||=[]; s.always||=ALWAYS_DEFAULT.slice();
 const $=q=>document.querySelector(q),esc=x=>String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
 const key=(kind,name)=>`${kind}::${name}`;
