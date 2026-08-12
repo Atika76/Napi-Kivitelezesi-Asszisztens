@@ -1,23 +1,22 @@
-# Napi Kivitelezési Asszisztens – V2 javított
+# Napi Kivitelezési Asszisztens
 
-A működő V1 alapjára épített, szélesebb szakmai munkafolyamat-listát tartalmazó prototípus.
+Gyors, regisztráció nélkül használható napi indulólista generálkivitelezőknek és építőipari szakembereknek. A kiválasztott munkafolyamatokból egy összevont szerszám-, anyag- és helyszíni kelléklista készül, hogy induláskor ne maradjon otthon fontos tétel.
 
-## Mit tud?
-- Több munkafolyamat egy napon.
-- Nincs időpont- vagy időtartam-megadás.
-- A kiválasztott munkák szerszám- és anyagjavaslatai összevonódnak.
-- Ismétlődő tételek csak egyszer jelennek meg.
-- Minden tétel külön kipipálható.
-- Saját szerszám és saját anyag hozzáadható.
-- Regisztráció nélkül használható.
-- A napi kiválasztások a böngészőben helyben mentődnek.
-- Saját ikon és webapp manifest is van benne.
+## Fő funkciók
 
-## Munkafolyamatok
-Falazás, Vakolás, Betonozás, Zsaluzás, Bontás, Szigetelés, Hőszigetelés, Vízszigetelés, Burkolás, Padloponozás / aljzatkiegyenlítés, Glettelés, Festés, Színezés, Profilozás, Gipszkartonozás, Állványozás, Térkövezés, Aljzatbetonozás, Betoncsiszolás, Fúrás / vésés, Nyílászáró körüli javítás, Kőműves javítások, Tereprendezés, Anyagmozgatás, Takarítás / munkaterület-rendezés.
+- Több munkafolyamat kiválasztása egy munkanaphoz; az ismétlődő tételek csak egyszer jelennek meg.
+- Szakmai alapjavaslatok szerszámokra, gépekre és anyagokra, saját tételek hozzáadásával.
+- Külön „Védelem és helyszíni kellékek” lista.
+- Tételenként három állapot: **Megvan**, **Be kell pakolni**, **Beszerzendő**.
+- Állandó, személyre szabható „Mindig ellenőrizd” lista.
+- Anyagokhoz mennyiség vagy rövid megjegyzés.
+- Munkafolyamat-, szerszám-, anyag- és kellékkereső.
+- Tegnapi lista visszatöltése, megosztás és nyomtatható napi lista.
+- Helyi, személyes tanulás: az ismétlődően használt saját tételeket a program felajánlja a megfelelő munkafolyamathoz.
+- Minden adat helyben, a böngészőben marad; nincs kötelező felhasználói fiók.
 
-Az egyes listák szakmai alapjavaslatok; nem kötelező előírások. A felhasználó dönt minden tételről.
+Az egyes listák szakmai alapjavaslatok, nem kötelező előírások. A végső döntést minden esetben a felhasználó hozza meg.
 
+## Ikonok és telepítés
 
-## Ikonok
-A projekt saját kivitelezési asszisztens ikont használ: `icons/favicon.svg` a böngészőfülhöz, `icon-192.png` és `icon-512.png` a telefonos/PWA telepítéshez. A `manifest.webmanifest` és az `index.html` ezekre közvetlenül hivatkozik.
+A projekt saját építőipari ikont használ. Az `icon-192.png` és `icon-512.png` fájlt a `manifest.webmanifest` és az `index.html` közvetlenül használja, ezért a böngészőben és telefonos PWA-telepítésnél is ez jelenik meg.
