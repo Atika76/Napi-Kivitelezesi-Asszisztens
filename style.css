@@ -506,8 +506,9 @@ main {
   gap: 10px;
 }
 
-.check-item {
+.item .check-item {
   width: 25px;
+  min-width: 25px;
   height: 25px;
   margin: 1px 0 0;
   accent-color: var(--green);
