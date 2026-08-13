@@ -495,17 +495,39 @@ main {
 .item {
   display: block;
   padding: 11px;
+  cursor: pointer;
+  transition: background-color .12s ease, opacity .12s ease;
 }
 
 .item-top {
-  display: flex;
+  display: grid;
+  grid-template-columns: 27px minmax(0, 1fr) auto;
   align-items: flex-start;
-  justify-content: space-between;
   gap: 10px;
+}
+
+.check-item {
+  width: 25px;
+  height: 25px;
+  margin: 1px 0 0;
+  accent-color: var(--green);
+  cursor: pointer;
 }
 
 .itemmain strong { display: block; }
 .itemmain span { display: block; margin-top: 2px; color: var(--muted); font-size: .84rem; }
+
+.item.is-checked {
+  border-color: #a9dcb9;
+  background: #f5fcf7;
+  opacity: .78;
+}
+
+.item.is-checked .itemmain strong {
+  color: var(--green-dark);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
 
 .remove-item {
   display: grid;
@@ -575,7 +597,7 @@ main {
 
 .summary-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1.35fr repeat(3, 1fr);
   gap: 8px;
   padding: 13px;
   border: 1px solid var(--line);
@@ -588,6 +610,22 @@ main {
 }
 
 .summary-strip b { display: block; color: var(--ink); font-size: 1.3rem; }
+
+.checked-summary {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: 3px;
+  color: var(--green-dark);
+}
+
+.checked-summary b { color: var(--green-dark); }
+.checked-summary i { color: var(--muted); font-style: normal; }
+.checked-summary small { grid-column: 1 / -1; font-weight: 800; }
+
+.always-tools { justify-content: space-between; }
+.always-tools .section-copy { margin: 0; }
 
 .actions { justify-content: flex-end; }
 .secondary { min-height: 46px; padding: 10px 15px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font-weight: 800; }
@@ -637,6 +675,7 @@ dialog::backdrop { background: rgba(18, 29, 37, .55); }
   .top-actions .danger-button { grid-column: 1 / -1; }
   .panel-tools { align-items: stretch; flex-direction: column; }
   .panel-tools .small { width: 100%; }
+  .summary-strip { grid-template-columns: repeat(2, 1fr); }
   .addrow { display: grid; grid-template-columns: minmax(0, 1fr) 46px; }
   .addrow > button:last-child { grid-column: 1 / -1; width: 100%; }
   .note-actions { display: grid; grid-template-columns: 1fr; }
@@ -650,6 +689,7 @@ dialog::backdrop { background: rgba(18, 29, 37, .55); }
   .remove-work { width: 100%; }
   .summary-counts { gap: 5px; }
   .summary-counts div { padding: 7px 4px; font-size: .77rem; }
+  .summary-strip { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media print {

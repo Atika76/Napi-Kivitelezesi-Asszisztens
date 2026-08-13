@@ -54,8 +54,21 @@
       <div class="accordion-panel" id="otherPanel" hidden>
         <div class="panel-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="safetySearch" type="search" placeholder="Kellék keresése…"></label><button type="button" id="addSafety" class="small">+ Saját</button></div>
         <div id="safety"></div>
-        <details class="secondary-box"><summary>✅ Mindig ellenőrizd <span id="alwaysCount">0</span></summary><p>Saját, állandó induló felszerelésed.</p><button type="button" id="addAlways" class="small">+ Saját tétel</button><div id="always"></div></details>
-        <details class="secondary-box"><summary>💡 Korábban gyakori tételek</summary><div id="learning"></div></details>
+      </div>
+    </section>
+
+    <section class="accordion card" id="alwaysSection">
+      <button type="button" class="accordion-toggle" aria-expanded="false" aria-controls="alwaysPanel" data-toggle="alwaysSection"><span><b>✅ Mindig ellenőrizd <em id="alwaysCount">0</em></b><small>Állandó induló felszerelésed.</small></span><span class="chevron" aria-hidden="true">⌄</span></button>
+      <div class="accordion-panel" id="alwaysPanel" hidden>
+        <div class="panel-tools always-tools"><p class="section-copy">Ezek minden új napi listában megjelennek.</p><button type="button" id="addAlways" class="small">+ Saját tétel</button></div>
+        <div id="always"></div>
+      </div>
+    </section>
+
+    <section class="accordion card" id="learningSection" hidden>
+      <button type="button" class="accordion-toggle" aria-expanded="false" aria-controls="learningPanel" data-toggle="learningSection"><span><b>⭐ Korábban gyakori tételek <em id="learningCount">0</em></b><small>A visszatérően használt saját tételek ajánlatai.</small></span><span class="chevron" aria-hidden="true">⌄</span></button>
+      <div class="accordion-panel" id="learningPanel" hidden>
+        <div id="learning"></div>
       </div>
     </section>
 
@@ -66,7 +79,7 @@
       <p id="noteStatus" class="saved-note" role="status"></p>
     </section>
 
-    <section class="summary-strip" aria-label="Napi lista összegzése"><span><b id="ready">0</b> megvan</span><span><b id="pack">0</b> pakolni</span><span><b id="buy">0</b> beszerzendő</span></section>
+    <section class="summary-strip" aria-label="Napi lista összegzése"><span class="checked-summary"><b id="checked">0</b><i>/</i><b id="total">0</b><small>Ellenőrizve</small></span><span><b id="ready">0</b> megvan</span><span><b id="pack">0</b> pakolni</span><span><b id="buy">0</b> beszerzendő</span></section>
   </main>
 
   <dialog id="dlg"><form id="form"><h2 id="dlgTitle">Saját tétel</h2><p id="dlgText" class="muted"></p><div class="dialog-input"><input id="dlgInput" type="text" required maxlength="80" placeholder="Írd be a tételt…"><button type="button" class="mic" data-mic-target="dlgInput" aria-label="Tétel bemondása">🎙️</button></div><div class="actions"><button type="button" id="cancel" class="secondary">Mégse</button><button type="submit">Hozzáadás</button></div></form></dialog>
