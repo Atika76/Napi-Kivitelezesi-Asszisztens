@@ -72,9 +72,11 @@
       </div>
     </section>
 
-    <section class="card packed-card" id="packedSection" hidden aria-labelledby="packedTitle">
-      <div class="packed-head"><span><b id="packedTitle">🚚 Bepakolva <em id="packedCount">0</em></b><small>Azok a tételek, amelyeket már bepipáltál.</small></span></div>
-      <div id="packed" class="packed-list"></div>
+    <section class="accordion card packed-card" id="packedSection" aria-labelledby="packedTitle">
+      <button type="button" class="accordion-toggle" aria-expanded="false" aria-controls="packedPanel" data-toggle="packedSection"><span><b id="packedTitle">🚚 Bepakolva <em id="packedCount">0</em></b><small>Azok a tételek, amelyeket már bepipáltál.</small></span><span class="chevron" aria-hidden="true">⌄</span></button>
+      <div class="accordion-panel" id="packedPanel" hidden>
+        <div id="packed" class="packed-list"></div>
+      </div>
     </section>
 
     <section class="card quick-note" aria-labelledby="quickNoteTitle">

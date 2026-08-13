@@ -604,6 +604,15 @@ main {
 
 .packed-list { display: grid; gap: 8px; }
 
+.packed-empty {
+  margin: 0;
+  padding: 11px;
+  border: 1px dashed #badcc5;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--muted);
+}
+
 .packed-item {
   display: grid;
   grid-template-columns: 29px minmax(0, 1fr) auto;
