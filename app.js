@@ -36,7 +36,7 @@ function migrate(){const old=JSON.parse(localStorage.getItem(PREVIOUS_KEY)||loca
 let state=JSON.parse(localStorage.getItem(KEY)||"null")||migrate();
 state={...empty(),...state,status:state.status||{},checked:state.checked||{},notes:state.notes||{},learning:state.learning||{},customWorks:state.customWorks||[],always:state.always||ALWAYS_DEFAULT.slice()};
 let mode="",toastTimer;
-const ui={workSection:true,toolSection:false,materialSection:false,otherSection:false,alwaysSection:false,learningSection:false,packedSection:true,...JSON.parse(localStorage.getItem(UI_KEY)||"{}")};
+const ui={workSection:true,toolSection:false,materialSection:false,otherSection:false,alwaysSection:false,learningSection:false,...JSON.parse(localStorage.getItem(UI_KEY)||"{}")};
 function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
 function saveUi(){localStorage.setItem(UI_KEY,JSON.stringify(ui))}
 function allWorks(){return {...C,...Object.fromEntries(state.customWorks.map(name=>[name,{t:[],m:[]}]))}}

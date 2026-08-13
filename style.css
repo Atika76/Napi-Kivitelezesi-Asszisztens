@@ -591,7 +591,17 @@ main {
 .suggestion small { display: block; color: var(--muted); }
 .suggestion button { min-height: 36px; padding: 6px 9px; border-radius: 8px; background: var(--green-soft); color: var(--green-dark); font-weight: 800; }
 
-.packed-card { border-color: #a9dcb9; background: linear-gradient(135deg, #ffffff, #f4fff7); }
+.packed-card { padding: 13px; border-color: #a9dcb9; background: linear-gradient(135deg, #ffffff, #f4fff7); }
+
+.packed-head {
+  margin-bottom: 9px;
+}
+
+.packed-head b, .packed-head small { display: block; }
+.packed-head b { font-size: 1.15rem; }
+.packed-head small { margin-top: 2px; color: var(--muted); }
+.packed-head em { color: var(--green-dark); font-style: normal; }
+
 .packed-list { display: grid; gap: 8px; }
 
 .packed-item {
