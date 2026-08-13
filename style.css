@@ -591,6 +591,45 @@ main {
 .suggestion small { display: block; color: var(--muted); }
 .suggestion button { min-height: 36px; padding: 6px 9px; border-radius: 8px; background: var(--green-soft); color: var(--green-dark); font-weight: 800; }
 
+.packed-card { border-color: #a9dcb9; background: linear-gradient(135deg, #ffffff, #f4fff7); }
+.packed-list { display: grid; gap: 8px; }
+
+.packed-item {
+  display: grid;
+  grid-template-columns: 29px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  padding: 10px;
+  border: 1px solid #cfe9d8;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.packed-tick {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-weight: 900;
+}
+
+.packed-item strong, .packed-item small { display: block; }
+.packed-item small { margin-top: 2px; color: var(--muted); font-size: .82rem; }
+
+.packed-item button {
+  min-height: 36px;
+  padding: 6px 9px;
+  border: 1px solid #b9d8c3;
+  border-radius: 8px;
+  background: var(--green-soft);
+  color: var(--green-dark);
+  font-size: .78rem;
+  font-weight: 800;
+}
+
 .section-label p { margin-bottom: 12px; color: var(--muted); }
 .note-actions { margin-top: 9px; }
 .note-actions .mic { width: auto; }
@@ -681,6 +720,8 @@ dialog::backdrop { background: rgba(18, 29, 37, .55); }
   .addrow > button:last-child { grid-column: 1 / -1; width: 100%; }
   .note-actions { display: grid; grid-template-columns: 1fr; }
   .note-actions .mic { width: 100%; }
+  .packed-item { grid-template-columns: 29px minmax(0, 1fr); }
+  .packed-item button { grid-column: 1 / -1; width: 100%; }
 }
 
 @media (max-width: 390px) {

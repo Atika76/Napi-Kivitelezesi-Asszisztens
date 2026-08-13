@@ -72,6 +72,13 @@
       </div>
     </section>
 
+    <section class="accordion card packed-card" id="packedSection" hidden>
+      <button type="button" class="accordion-toggle" aria-expanded="true" aria-controls="packedPanel" data-toggle="packedSection"><span><b>🚚 Bepakolva <em id="packedCount">0</em></b><small>Azok a tételek, amelyeket már bepipáltál.</small></span><span class="chevron" aria-hidden="true">⌃</span></button>
+      <div class="accordion-panel" id="packedPanel">
+        <div id="packed" class="packed-list"></div>
+      </div>
+    </section>
+
     <section class="card quick-note" aria-labelledby="quickNoteTitle">
       <div class="section-label"><h2 id="quickNoteTitle">🎙️ Gyorsjegyzet</h2><p>Írd vagy mondd be, ami még eszedbe jutott.</p></div>
       <textarea id="quickNote" rows="4" placeholder="Például: Holnap kell még két hosszabbító, három zsák cement és a nagy flex."></textarea>
