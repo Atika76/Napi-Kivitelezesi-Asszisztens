@@ -11,40 +11,65 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="top">
-      <div><small>NAPI KIVITELEZÉSI ASSZISZTENS</small><h1>Mai munkanap</h1><p>Válaszd ki a mai munkákat. A program segít, hogy induláskor ne maradjon otthon fontos eszköz vagy anyag.</p></div>
-      <div class="top-actions"><button type="button" id="loadYesterday" class="outline">Tegnapi lista</button><button type="button" id="share" class="outline">Megosztás</button><button type="button" id="print" class="outline">Nyomtatás</button><button type="button" id="reset" class="outline danger">Újrakezdés</button></div>
+      <div><small>NAPI KIVITELEZÉSI ASSZISZTENS</small><h1>Mai munkanap</h1><p>Válaszd ki a mai munkákat, ellenőrizd a listát, és indulhattok.</p></div>
+      <div class="top-actions"><button type="button" id="loadYesterday" class="outline">Tegnapi lista</button><button type="button" id="share" class="outline">Megosztás</button><button type="button" id="print" class="outline">Nyomtatás</button><button type="button" id="reset" class="outline danger">Új nap</button></div>
     </div>
   </header>
+
   <main>
-    <section class="card hero">
-      <div><h2>Többféle munka egy napon</h2><p>Válassz ki több munkafolyamatot. Az azonos szerszámokat és anyagokat egy napi listába vonjuk össze.</p></div>
-      <div class="counter"><b id="workCount">0</b><span>kiválasztott munka</span></div>
+    <section class="accordion card" id="workSection">
+      <button type="button" class="accordion-toggle" aria-expanded="true" aria-controls="workPanel" data-toggle="workSection"><span><b>🏗️ Mit csinálunk ma?</b><small>Munkafolyamatok kiválasztása</small></span><span class="chevron" aria-hidden="true">⌃</span></button>
+      <div class="accordion-panel" id="workPanel">
+        <label class="search"><span aria-hidden="true">⌕</span><input id="workSearch" type="search" placeholder="Munkafolyamat keresése…"></label>
+        <div id="works" class="chips"></div>
+        <div class="addrow"><input id="newWork" type="text" placeholder="Más munkafolyamat…"><button type="button" class="mic" data-mic-target="newWork" aria-label="Munkafolyamat bemondása">🎙️</button><button type="button" id="addWork">Hozzáadás</button></div>
+      </div>
     </section>
 
-    <section class="card work-card">
-      <div class="section-title"><div><h2>Munkafolyamatok</h2><p class="muted">Többet is kiválaszthatsz.</p></div><label class="search"><span>⌕</span><input id="workSearch" type="search" placeholder="Munkafolyamat keresése…"></label></div>
-      <div id="works" class="chips"></div>
-      <div class="addrow"><input id="newWork" type="text" placeholder="Más munkafolyamat…"><button type="button" id="addWork">+ Hozzáadás</button></div>
-      <div id="selected" class="selected"></div>
+    <section class="card today-card" aria-labelledby="todayTitle">
+      <div class="today-head"><div><h2 id="todayTitle">📋 Mai munkák</h2><p>Ez a mai kiválasztott munkafolyamatok listája.</p></div><strong id="workCount">0</strong></div>
+      <div id="selected" class="today-list"><div class="empty">Még nincs kiválasztott munkafolyamat.</div></div>
     </section>
 
-    <section class="grid triple">
-      <section class="card list-card"><div class="head"><div><h2>🔨 Szerszámok és gépek</h2><p class="muted">Összevont szakmai alapjavaslat.</p></div><button type="button" id="addTool" class="small">+ Saját</button></div><label class="item-search"><span>⌕</span><input id="toolSearch" type="search" placeholder="Szerszám keresése…"></label><div id="tools"></div></section>
-      <section class="card list-card"><div class="head"><div><h2>📦 Szükséges anyagok</h2><p class="muted">Mennyiséget vagy rövid megjegyzést is írhatsz.</p></div><button type="button" id="addMaterial" class="small">+ Saját</button></div><label class="item-search"><span>⌕</span><input id="materialSearch" type="search" placeholder="Anyag keresése…"></label><div id="materials"></div></section>
-      <section class="card list-card"><div class="head"><div><h2>🦺 Védelem és helyszíni kellékek</h2><p class="muted">Munkavédelem, áramellátás és alap helyszíni eszközök.</p></div><button type="button" id="addSafety" class="small">+ Saját</button></div><label class="item-search"><span>⌕</span><input id="safetySearch" type="search" placeholder="Kellék keresése…"></label><div id="safety"></div></section>
+    <section class="accordion card" id="toolSection">
+      <button type="button" class="accordion-toggle" aria-expanded="false" aria-controls="toolPanel" data-toggle="toolSection"><span><b>🔨 Szerszámok és gépek <em id="toolCount">0</em></b><small>Nyisd le az indulás előtti ellenőrzéshez.</small></span><span class="chevron" aria-hidden="true">⌄</span></button>
+      <div class="accordion-panel" id="toolPanel" hidden>
+        <div class="panel-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="toolSearch" type="search" placeholder="Szerszám keresése…"></label><button type="button" id="addTool" class="small">+ Saját</button></div>
+        <div id="tools"></div>
+      </div>
     </section>
 
-    <section class="grid double">
-      <section class="card list-card"><div class="head"><div><h2>✅ Mindig ellenőrizd</h2><p class="muted">Saját, állandó induló felszerelésed. Minden nap megjelenik.</p></div><button type="button" id="addAlways" class="small">+ Saját</button></div><div id="always"></div></section>
-      <section class="card learning-card"><div class="head"><div><h2>💡 Korábban gyakori tételek</h2><p class="muted">A saját, ismétlődően használt tételeidből készül.</p></div></div><div id="learning"></div></section>
+    <section class="accordion card" id="materialSection">
+      <button type="button" class="accordion-toggle" aria-expanded="false" aria-controls="materialPanel" data-toggle="materialSection"><span><b>📦 Anyagok <em id="materialCount">0</em></b><small>Mennyiséget vagy rövid megjegyzést is írhatsz.</small></span><span class="chevron" aria-hidden="true">⌄</span></button>
+      <div class="accordion-panel" id="materialPanel" hidden>
+        <div class="panel-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="materialSearch" type="search" placeholder="Anyag keresése…"></label><button type="button" id="addMaterial" class="small">+ Saját</button></div>
+        <div id="materials"></div>
+      </div>
     </section>
 
-    <section class="card status-help"><h2>Indulás előtti ellenőrzés</h2><p class="muted">Minden tételnél válaszd ki: <b>Megvan</b>, <b>Be kell pakolni</b> vagy <b>Beszerzendő</b>. A program javasol, a végső döntés a tiéd.</p><div class="progress-summary"><strong><span id="ready">0</span> megvan</strong><strong><span id="pack">0</span> be kell pakolni</strong><strong><span id="buy">0</span> beszerzendő</strong></div><div class="progress"><i id="bar"></i></div></section>
+    <section class="accordion card" id="otherSection">
+      <button type="button" class="accordion-toggle" aria-expanded="false" aria-controls="otherPanel" data-toggle="otherSection"><span><b>🧰 Egyéb / helyszíni kellékek <em id="safetyCount">0</em></b><small>Védelem, áramellátás és állandó induló felszerelés.</small></span><span class="chevron" aria-hidden="true">⌄</span></button>
+      <div class="accordion-panel" id="otherPanel" hidden>
+        <div class="panel-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="safetySearch" type="search" placeholder="Kellék keresése…"></label><button type="button" id="addSafety" class="small">+ Saját</button></div>
+        <div id="safety"></div>
+        <details class="secondary-box"><summary>✅ Mindig ellenőrizd <span id="alwaysCount">0</span></summary><p>Saját, állandó induló felszerelésed.</p><button type="button" id="addAlways" class="small">+ Saját tétel</button><div id="always"></div></details>
+        <details class="secondary-box"><summary>💡 Korábban gyakori tételek</summary><div id="learning"></div></details>
+      </div>
+    </section>
+
+    <section class="card quick-note" aria-labelledby="quickNoteTitle">
+      <div class="section-label"><h2 id="quickNoteTitle">🎙️ Gyorsjegyzet</h2><p>Írd vagy mondd be, ami még eszedbe jutott.</p></div>
+      <textarea id="quickNote" rows="4" placeholder="Például: Holnap kell még két hosszabbító, három zsák cement és a nagy flex."></textarea>
+      <div class="note-actions"><button type="button" class="mic mic-wide" data-mic-target="quickNote">🎙️ Bemondás</button><button type="button" id="saveQuickNote">Jegyzet mentése</button></div>
+      <p id="noteStatus" class="saved-note" role="status"></p>
+    </section>
+
+    <section class="summary-strip" aria-label="Napi lista összegzése"><span><b id="ready">0</b> megvan</span><span><b id="pack">0</b> pakolni</span><span><b id="buy">0</b> beszerzendő</span></section>
   </main>
 
-  <dialog id="dlg"><form id="form"><h2 id="dlgTitle">Saját tétel</h2><p id="dlgText" class="muted"></p><input id="dlgInput" type="text" required maxlength="80" placeholder="Írd be a tételt…"><div class="actions"><button type="button" id="cancel" class="secondary">Mégse</button><button type="submit">Hozzáadás</button></div></form></dialog>
+  <dialog id="dlg"><form id="form"><h2 id="dlgTitle">Saját tétel</h2><p id="dlgText" class="muted"></p><div class="dialog-input"><input id="dlgInput" type="text" required maxlength="80" placeholder="Írd be a tételt…"><button type="button" class="mic" data-mic-target="dlgInput" aria-label="Tétel bemondása">🎙️</button></div><div class="actions"><button type="button" id="cancel" class="secondary">Mégse</button><button type="submit">Hozzáadás</button></div></form></dialog>
   <footer>Napi Kivitelezési Asszisztens · Regisztráció nélkül használható</footer>
   <script src="app.js"></script>
 </body>
